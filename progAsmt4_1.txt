@@ -1,0 +1,84 @@
+
+		  CS5765. Computer Vision. Spring 2013
+
+			Programming Assignment 4
+
+			Deadline 2: April 05, 2013
+
+This assignment is to study recognition and associated concepts
+hands-on. This assignment is to be done in the same teams of 2 as the
+previous one.  You have to implement a standard object recognition
+pipeline and test its performance on different datasets for this
+assignment.
+
+
+Implement search/recognition of images using two methods for about 10
+categories from the Caltech 101 dataset
+(www.vision.caltech.edu/Image_Datasets/Caltech101/).  The categories to
+be included are now posted on the courses portal as Resource #12.
+
+Method 1:
+  The first method is the popular Bag-of-Words (BoW) based image
+  search/retrieval method.  The BoW method represents each image using
+  descriptors evaluated in a dense manner from an image. SIFT, SURF,
+  HoG, and other descriptors can be used. The descriptor vectors are
+  quantized to set of visual words using a clustering technique. Each
+  image is then represented as a document vector which is the histogram
+  of visual words. Images in the database are represented using these
+  vectors and an inverted index is made of them. The document vector is
+  extracted from each query image and matched against candidate images
+  using the index. They have to be ranked and the top 8 images have to
+  be displayed.
+
+  Tasks involved:
+
+   1. Extract descriptors from a good subset of the images (30 from each
+      category)
+
+   2. Build the dictionary or vocabulary using clustering.
+
+   3. Build document vectors for each image and index them.
+
+   4. During query time, extract images using the document vector of the
+      query image.
+
+   5. Rank them and display them in ranked order.
+
+   6. Try the same with SURF, HOG, etc., and compare the results.
+
+
+ Method 2:
+  Global features and a classifier will be used for the other method.
+  The tasks involved are:
+
+  1. Extract global description about the image using the GIST feature.
+
+  2. Using the training data for each category, train an SVM classifier.
+     One versus rest strategy will work fine since SVM is a binary
+     classifier.
+
+  3. During query phase, extract the description of the query image.
+     Classify it into the appropriate class using the classifier built.
+
+  4. Compare your results with those from Method 1.
+
+  Try out Method 2 with the PHOG descriptor. Also, try Neural Networks
+  as a classifier. ANNs can be trained for all classed together.
+
+
+  The VLFeat repository contains libraries for most of the above steps.
+  You should use the code, but understand what is going on at each step
+  and why.
+
+  You have to build a web-based interface using which someone can upload
+  an arbitrary image for which you should show the top 8 matches.
+
+  You have to estimate precision, recall, and average precision of your
+  scheme using a large number of test images from the same dataset. The
+  query is considered successful if one of the 8 matches contains an
+  image from the same category.
+
+  You should produce a comprehensive report on your findings from these
+  experiments. Comprehension of the process is the key take away from
+  this assignment.
+
